@@ -1,11 +1,12 @@
 const { Client } = require('discord.js');
 const fs = require('fs');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') }); // Load environment variables from a specific path
 
 const client = new Client({ intents: [] }); // Initialize client without intents as we won't be listening to events
 
 const amount = 2000; // Fixed amount
-const filePath = './used_once.json'; // Path to track if the script has been run
+const filePath = path.resolve(__dirname, 'used_once.json'); // Path to track if the script has been run
 
 client.once('ready', async () => {
     // Ensure the command is only run once
